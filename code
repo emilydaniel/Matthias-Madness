@@ -1,0 +1,54 @@
+;;Matthias Madness
+;;aka How to Not Get Kicked out of a Fundies Exam
+(require 2htdp/image)
+(require 2htdp/universe)
+
+(define BG (empty-scene 800 700))
+(define head-reg .)
+(define head-dis .)
+(define head-happy .)
+(define arms-crossed .)
+(define arms-down .)
+
+(define legs .)
+
+(define-struct scene(image sc-num next-sc))
+
+;;Image Image Image -> Image
+;;Draws Felleisen
+(define (Felleisen head body legs)
+  (overlay/offset
+   (overlay/offset head
+                   0
+                   50                    ;;
+                   body)
+   0
+   105
+   legs))
+
+;; ??? -> World
+;; Draws Scene1, Felleisen in front of a blackboard speaking
+(define (scene1 scene)
+  (make-scene
+   (place-image (Felleisen head-reg arms-down legs)
+                200 500
+                (place-image (text "Fundies Exam 1" 40 'white)
+                             300 200
+                             (place-image (rectangle 700 400 'solid 'black)
+                                          400 250 BG)))
+   1
+   (next-scene 1)))
+   
+;;SceneNumber -> Scene
+;;Next scene
+(define (next-scene sc-num)
+  (sc-num = (+ sc-num 1)))
+
+
+;;Starts Game
+(big-bang scene1
+          [to-draw scene1]
+ ;;         [on-tick dothing]
+ ;;         [on-key yn?]
+ ;;         [stop-when over?]
+          )
