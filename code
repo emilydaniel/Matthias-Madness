@@ -11,8 +11,12 @@
 (define arms-down .)
 
 (define legs .)
+(define felleisen-fight .)
+(define fundies-test .)
+(define phone .)
+(define felleisen-end .)
 
-(define-struct scene(image sc-num next-sc))
+(define-struct scene(image next-sc))
 
 ;;Image Image Image -> Image
 ;;Draws Felleisen
@@ -26,29 +30,287 @@
    105
    legs))
 
-;; ??? -> World
-;; Draws Scene1, Felleisen in front of a blackboard speaking
-(define (scene1 scene)
-  (make-scene
+;;Scene1
+(define scene1
    (place-image (Felleisen head-reg arms-down legs)
                 200 500
                 (place-image (text "Fundies Exam 1" 40 'white)
                              300 200
                              (place-image (rectangle 700 400 'solid 'black)
-                                          400 250 BG)))
-   1
-   (next-scene 1)))
-   
-;;SceneNumber -> Scene
-;;Next scene
-(define (next-scene sc-num)
-  (sc-num = (+ sc-num 1)))
+                                          400 250 BG))))
 
+;;Scene2
+(define scene2
+  (place-image (text "Press Y or N" 25 'Black)
+               600 600
+               (place-image (circle 15 'solid 'white)
+                            250 400
+                            (place-image (circle 20 'solid 'white)
+                                         275 350
+                                         (place-image (text "Are you ready for the Fundies Exam?" 25 'black)
+                                                      560 275
+                                                      (place-image (text "Remember no getting up if you're in" 25 'black)
+                                                                   560 310
+                                                                   (place-image (text "the middle of a row until the test is over." 25 'black)
+                                                                                560 345
+                                                                                (place-image (rectangle 450 150 'solid 'white)
+                                                                                             550 310 scene1))))))))
+
+;;Scene3
+(define scene3
+  (place-image (text "Good Luck!" 75 'red)
+               400 300
+               (place-image (text "Hope you're ready!" 75 'red)
+                            400 400
+                            (place-image (text "Press Y when done" 25 'black)
+                                         600 600
+                                         fundies-test))))
+
+;;Scene4
+(define scene4
+  (place-image (text "Too bad. Should" 75 'red)
+               400 300
+               (place-image (text "have studied harder." 75 'red)
+                            400 400
+                            (place-image (text "Press Y when done" 25 'black)
+                                         600 600
+                                         fundies-test))))
+;;Scene5
+(define scene5 
+  (place-image (text "Done already?" 60 'black)
+               400 300
+               (place-image (text "Y    N" 25 'black)
+                            650 600
+               fundies-test)))
+
+;;Scene6
+(define scene6
+  (place-image (text "Get up?" 60 'black)
+               400 400
+               (place-image (text "Y    N" 35 'black)
+                            650 600
+                            fundies-test)))
+
+;;Scene7
+(define scene7
+  (place-image (text "You've been waiting a while." 60 'black)
+               400 325 scene6))
+
+;;Scene8
+(define scene8
+  (place-image (text "Congrats. You made it!" 75 'red)
+               400 350
+               (place-image (Felleisen head-happy arms-down legs)
+                200 500
+                (place-image (text "Fundies Exam 1" 40 'white)
+                             300 200
+                             (place-image (rectangle 700 400 'solid 'black)
+                                          400 250 BG)))))
+
+;;Scene9
+(define scene9 
+    (place-image (text "Sit(Y)    Step over seats in front of you(N)" 25 'Black)
+               500 600
+               (place-image (circle 15 'solid 'white)
+                            250 400
+                            (place-image (circle 20 'solid 'white)
+                                         300 350
+                                         (place-image (text "Sit down!" 25 'black)
+                                                      560 310
+                                                      (place-image (rectangle 250 50 'solid 'white)
+                                                                                             550 305 scene1))))))
+
+
+;;Scene 10
+(define scene10
+   (place-image (text "Sit(Y)    Don't get in seat, vault to front of room(N)" 25 'Black)
+               500 600
+               (place-image (circle 15 'solid 'white)
+                            250 400
+                            (place-image (circle 20 'solid 'white)
+                                         300 350
+                                         (place-image (text "GET IN YOUR SEAT NOW!" 25 'black)
+                                                      560 310
+                                                      (place-image (rectangle 350 50 'solid 'white)
+                                                                   550 305
+                                                                   (place-image (Felleisen head-reg arms-crossed legs)
+                                                                                200 500
+                                                                                (place-image (text "Fundies Exam 1" 40 'white)
+                                                                                             300 200
+                                                                                             (place-image (rectangle 700 400 'solid 'black)
+                                                                                                          400 250 BG)))))))))
+
+;;Scene 11
+(define scene11
+  (place-image (text "Sit(Y)    That's not fair!(N)" 25 'Black)
+               500 600
+               (place-image (circle 15 'solid 'white)
+                            250 400
+                            (place-image (circle 20 'solid 'white)
+                                         300 350
+                                         (place-image (text "I WILL GIVE YOU A ZERO!" 25 'black)
+                                                      560 310
+                                                      (place-image (rectangle 350 50 'solid 'white)
+                                                                   550 305
+                                                                   (place-image (Felleisen head-dis arms-crossed legs)
+                                                                                200 500
+                                                                                (place-image (text "Fundies Exam 1" 40 'white)
+                                                                                             300 200
+                                                                                             (place-image (rectangle 700 400 'solid 'black)
+                                                                                                          400 250 BG)))))))))
+
+;;Scene12
+(define scene12
+  (place-image (text "Sit(Y)    Push Felleisen(N)" 25 'black)
+               500 600
+               (place-image (text "0" 250 'red)
+                            350 250 fundies-test)))
+
+;;Scene13
+(define scene13
+  (place-image (text "Enter" 25 'black)
+               500 600
+               (place-image felleisen-fight
+                            200 500
+                            (place-image (text "Fundies Exam 1" 40 'white)
+                             300 200
+                             (place-image (rectangle 700 400 'solid 'black)
+                                          400 250 BG)))))
+
+;;Scene14
+(define scene14
+  (place-image (text "Enter" 25 'black)
+               600 600
+               (place-image phone 190 455
+                            (place-image (circle 15 'solid 'white)
+                                         250 400
+                                         (place-image (circle 20 'solid 'white)
+                                                      300 350
+                                                      (place-image (text "I'M CALLING THE POLICE!!" 25 'black)
+                                                                   560 310
+                                                                   (place-image (rectangle 350 50 'solid 'white)
+                                                                                550 305
+                                                                                (place-image (Felleisen head-dis arms-crossed legs)
+                                                                                             200 500
+                                                                                             (place-image (text "Fundies Exam 1" 40 'white)
+                                                                                                          300 200
+                                                                                                          (place-image (rectangle 700 400 'solid 'black)
+                                                                                                                       400 250 BG))))))))))
+
+;;Scene 15
+(define scene15
+  (place-image (text "YOU LOSE!" 150 'red)
+               400 350
+               (place-image (text "Or win???" 50 'white)
+                            600 600 felleisen-end)))
+
+
+(define-struct Scene(ke sc-image))
+
+;;Renders Game
+(define (render ke)
+  scene1)
+
+;;Key Event Handler 1->2
+(define (kehandler1 _ke ke)
+  (cond 
+    [(key=? ke "y") (make-Scene((kehandler2 ke) scene2))]
+    [else (make-Scene((kehandler1 ke _ke) scene1))]))
+
+;;KeyEvent Handler 2->3/4
+(define (kehandler2 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler3 scene3))]
+    [(key=? ke "n") (make-Scene (kehandler4 scene4))]
+    [else (make-Scene(kehandler2 scene2))]))
+
+;;KeyEvent Handler 3->5
+(define (kehandler3 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler5 scene5))]
+    [else (make-Scene (kehandler3 scene3))]))
+
+;;KeyEvent Handler 4->5
+(define (kehandler4 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler5 scene5))]
+    [else (make-Scene(kehandler4 scene4))]))
+
+;;KeyEvent Handler 5->5/6
+(define (kehandler5 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler6 scene6))]
+    [(key=? ke "n") (make-Scene (kehandler5 scene5))]
+    [else (make-Scene(kehandler5 scene5))]))
+
+;;KeyEvent Handler 6->6/7/8
+(define (kehandler6 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler9 scene9))]
+    [(key=? ke "n") ;(if (count c = 3) (make-Scene (kehandler7 scene7))
+                        (make-Scene (kehandler8 scene8))]
+    [else (make-Scene(kehandler6 scene6))]))
+
+;;KeyEvent Handler 7
+(define (kehandler7 ke)
+  scene7)
+
+;;KeyEvent Handler 8->6/9
+(define (kehandler8 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler9 scene9))]
+    [(key=? ke "n") (make-Scene (kehandler7 scene7))]
+    [else (make-Scene(kehandler8 scene8))]))
+
+;;KeyEvent Handler 9->7/10
+(define (kehandler9 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler7 scene7))]
+    [(key=? ke "n") (make-Scene (kehandler10 scene10))]
+    [else (make-Scene(kehandler9 scene9))]))
+
+;;KeyEvent Handler 10->7/11
+(define (kehandler10 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler7 scene7))]
+    [(key=? ke "n") (make-Scene (kehandler11 scene11))]
+    [else (make-Scene(kehandler10 scene10))]))
+
+;;KeyEvent Handler 11->7/12
+(define (kehandler11 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler7 scene7))]
+    [(key=? ke "n") (make-Scene (kehandler12 scene12))]
+    [else (make-Scene(kehandler11 scene11))]))
+
+;;KeyEvent Handler 12->7/13
+(define (kehandler12 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler7 scene7))]
+    [(key=? ke "n") (make-Scene (kehandler13 scene13))]
+    [else (make-Scene(kehandler12 scene12))]))
+
+;;KeyEvent Handler 13->14
+(define (kehandler13 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler14 scene14))]
+    [else (make-Scene(kehandler13 scene13))]))
+
+;;KeyEvent Handler 14->5
+(define (kehandler14 ke)
+  (cond
+    [(key=? ke "y") (make-Scene (kehandler15 scene15))]
+    [else (make-Scene(kehandler14 scene14))]))
+
+;;KeyEvent Handler 15
+(define (kehandler15 ke)
+  scene15)
+  
 
 ;;Starts Game
 (big-bang scene1
-          [to-draw scene1]
+          [to-draw render]
  ;;         [on-tick dothing]
- ;;         [on-key yn?]
+          [on-key kehandler1]
  ;;         [stop-when over?]
           )
